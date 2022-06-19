@@ -1,0 +1,9 @@
+#!/bin/sh
+
+picom &
+fcitx5 -d &
+mpd &
+musnify-mpd &
+~/.config/dwm/scripts/./bar.sh &
+feh ~/.config/dwm/wallpapers/kurtco.jpg --bg-fill &
+dwm 
