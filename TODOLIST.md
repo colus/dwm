@@ -1,7 +1,6 @@
 #main
 
-[ ] add vanitygaps
-[ ] add catppuccin theme
+[x] add vanitygaps
 
 #optional
 

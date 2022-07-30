@@ -13,7 +13,8 @@ static const unsigned int gappov    = 9;       /* vert outer gap between windows
 static const int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const int horizpadbar        = 2;        /* horizontal padding for statusbar */
+static const int focusonwheel       = 1;
+static const int horizpadbar        = 0;        /* horizontal padding for statusbar */
 static const int vertpadbar         = 0;        /* vertical padding for statusbar */
 static const int vertpad            = 9;       /* vertical padding of bar */
 static const int sidepad            = 9;       /* horizontal padding of bar */
@@ -21,23 +22,19 @@ static const int user_bh            = 32;        /* 0 means that dwm will calcul
 static const char *fonts[]          = { 
         "jetbrains mono nerd font :size=11"
         };
-static const char col_black[]       = "#2e3440";
-static const char col_gray[]        = "#4c566a";
-static const char col_gray3[]       = "#373d49";
-static const char col_white[]	      = "#d8dee9";
-static const char col_blue[]	      = "#5E81AC";
-static const char col_green[]	      = "#149b81";
-static const char col_gray5[]	      = "#151515";
-static const char col_cyan[]        = "#81a1c1";
+static const char col_black[]       = "#282C34";
+static const char col_gray[]        = "#3E4452";
+static const char col_white[]	      = "#ABB2BF";
+static const char col_green[]	      = "#98C379";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_white, col_black, col_gray },
-	[SchemeSel]  = { col_cyan, col_gray3, col_cyan },
+	[SchemeSel]  = { col_green, col_black, col_green },
 };
 
 /* tagging */
 //static const char *tags[] = { "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" };
-//static const char *tags[] = { " ", " ", " ", " ", " ", " ", " ", " ", " " };
+//static const char *tags[] = { "", "", "", "", "", "", "", "", "" };
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
 static const unsigned int ulinepad	= 5;	/* horizontal padding between the underline and tag */
@@ -65,10 +62,10 @@ static const int lockfullscreen = 0; /* 1 will force focus on the fullscreen win
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[]=",      tile },    /* first entry is default */
-	{ "><>",      NULL },    /* no layout function means floating behavior */
+	{ "[T]",      tile },    /* first entry is default */
+	{ "[F]",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
-	{ NULL,       NULL },
+	{ NULL,       NULL }
 };
 
 /* key definitions */
@@ -99,7 +96,7 @@ static Key keys[] = {
 	{ MODKEY,                                 XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,		          XK_b,	     spawn,	     {.v = browsercmd } },
 	{ MODKEY|ShiftMask,		          XK_r,	     spawn,	     SHCMD("st -e lf")},
-        { MODKEY|ControlMask,		          XK_b,	     spawn,	     SHCMD("tabbed -c surf -e")},
+  { MODKEY|ControlMask,		          XK_b,	     spawn,	     SHCMD("tabbed -c surf -e")},
 	{ MODKEY|ShiftMask,		          XK_Return, spawn,	     {.v = filemncmd } },
 
   /* Volume */
@@ -110,6 +107,8 @@ static Key keys[] = {
   {0,              XF86XK_AudioStop,         spawn,          SHCMD("mpc stop")},
   {0,              XF86XK_AudioPrev,         spawn,          SHCMD("mpc prev")},
   {0,              XF86XK_AudioNext,         spawn,          SHCMD("mpc next")},
+  {0,              XF86XK_MonBrightnessDown, spawn,          SHCMD("light -U 5")},
+  {0,              XF86XK_MonBrightnessUp,   spawn,          SHCMD("light -A 5")},
 
   /* Screenshot */
   {MODKEY|ControlMask,                XK_u,       spawn,

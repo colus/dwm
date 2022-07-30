@@ -8,19 +8,14 @@ static int min_width = 700;                    /* minimum width when centered */
 static const char *fonts[] = {"Jetbrains Mono Nerd Font:size=11"};
 static const char *prompt      = NULL;      /* -p  option; prompt to the left of input field */
 
-static const char col_black[]     = "#2e3440";
-static const char col_gray[]      = "#4c566a";
-static const char col_gray3[]     = "#546e7a";
-static const char col_white[]	    = "#d8dee9";
-static const char col_blue[]	    = "#5E81AC";
-static const char col_green[]	    = "#149b81";
-static const char col_gray5[]	    = "#151515";
-static const char col_cyan[]      = "#81a1c1";
+static const char col_black[]       = "#282C34";
+static const char col_white[]	      = "#ABB2BF";
+static const char col_green[]	      = "#98C379";
 static const char *colors[SchemeLast][2] = {
             	/*     fg         bg       */
 	[SchemeNorm] = { col_white, col_black },
-	[SchemeSel] = { col_cyan, col_black },
-	[SchemeOut] = { col_black, col_cyan }
+	[SchemeSel] = { col_green, col_black },
+	[SchemeOut] = { col_black, col_green }
 };
 /* -l and -g options; controls number of lines and columns in grid if > 0 */
 static unsigned int lines      = 8;
