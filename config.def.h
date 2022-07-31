@@ -70,6 +70,7 @@ static const Layout layouts[] = {
 
 /* key definitions */
 #define MODKEY Mod4Mask
+#define ALTKEY Mod1Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
@@ -83,7 +84,7 @@ static const Layout layouts[] = {
 static const char *browsercmd[]  = { "firefox", NULL }; /* Web Browser here */
 static const char *filemncmd[]  = {"pcmanfm", NULL  }; /* File Manager here */
 static const char *termcmd[]  = { "st", NULL }; /* Terminal ofc */
-static const char *dmenucmd[]  = { "dmenu_run", "-c", "-p", "Commands", NULL }; /* Terminal ofc */
+static const char *dmenucmd[]  = { "dmenu_run", "-c", "-p", "Commands  ", NULL }; /* Terminal ofc */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 
 static Key keys[] = {
@@ -91,8 +92,8 @@ static Key keys[] = {
 
   /* Apps shortcuts */
 	{ MODKEY|ShiftMask,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY,                                 XK_p,      spawn,          SHCMD("j4-dmenu-desktop --dmenu='dmenu -c -p Apps'")},
-	{ MODKEY|ShiftMask,                       XK_n,      spawn,          SHCMD("networkmanager_dmenu -c -p Network")},
+	{ MODKEY,                                 XK_p,      spawn,          SHCMD("j4-dmenu-desktop --dmenu='dmenu -c -p Apps '")},
+	{ MODKEY|ShiftMask,                       XK_n,      spawn,          SHCMD("networkmanager_dmenu -c -p Networkﯱ ")},
 	{ MODKEY,                                 XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,		          XK_b,	     spawn,	     {.v = browsercmd } },
 	{ MODKEY|ShiftMask,		          XK_r,	     spawn,	     SHCMD("st -e lf")},
