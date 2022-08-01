@@ -16,8 +16,8 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 static const int focusonwheel       = 1;
 static const int horizpadbar        = 0;        /* horizontal padding for statusbar */
 static const int vertpadbar         = 0;        /* vertical padding for statusbar */
-static const int vertpad            = 9;       /* vertical padding of bar */
-static const int sidepad            = 9;       /* horizontal padding of bar */
+static const int vertpad            = 0;       /* vertical padding of bar */
+static const int sidepad            = 0;       /* horizontal padding of bar */
 static const int user_bh            = 32;        /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
 static const char *fonts[]          = { 
         "jetbrains mono nerd font :size=11"
@@ -84,7 +84,7 @@ static const Layout layouts[] = {
 static const char *browsercmd[]  = { "firefox", NULL }; /* Web Browser here */
 static const char *filemncmd[]  = {"pcmanfm", NULL  }; /* File Manager here */
 static const char *termcmd[]  = { "st", NULL }; /* Terminal ofc */
-static const char *dmenucmd[]  = { "dmenu_run", "-c", "-p", "Commands  ", NULL }; /* Terminal ofc */
+static const char *dmenucmd[]  = { "dmenu_run", "-c", "-p", "Commands:", NULL }; /* Terminal ofc */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 
 static Key keys[] = {
@@ -92,8 +92,7 @@ static Key keys[] = {
 
   /* Apps shortcuts */
 	{ MODKEY|ShiftMask,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY,                                 XK_p,      spawn,          SHCMD("j4-dmenu-desktop --dmenu='dmenu -c -p Apps '")},
-	{ MODKEY|ShiftMask,                       XK_n,      spawn,          SHCMD("networkmanager_dmenu -c -p Networkﯱ ")},
+	{ MODKEY,                                 XK_p,      spawn,          SHCMD("j4-dmenu-desktop --dmenu='dmenu -c -p Apps:'")},
 	{ MODKEY,                                 XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,		          XK_b,	     spawn,	     {.v = browsercmd } },
 	{ MODKEY|ShiftMask,		          XK_r,	     spawn,	     SHCMD("st -e lf")},
@@ -112,10 +111,8 @@ static Key keys[] = {
   {0,              XF86XK_MonBrightnessUp,   spawn,          SHCMD("light -A 5")},
 
   /* Screenshot */
-  {MODKEY|ControlMask,                XK_u,       spawn,
-        SHCMD("maim | xclip -selection clipboard -t image/png")},
   {MODKEY|ShiftMask,                            XK_u,       spawn,
-        SHCMD("maim --select | xclip -selection clipboard -t image/png")},
+        SHCMD("~/.local/bin/./screenshots")},
 
   /* Vanity gap */
 /*	

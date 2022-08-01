@@ -6,7 +6,7 @@
 cpu() {
   cpu_val=$(grep -o "^[^ ]*" /proc/loadavg)
 
-  printf "^c$green^ CPU"
+  printf "^c$magenta^ CPU"
   printf "^c$white^ $cpu_val"
 }
 
@@ -19,7 +19,7 @@ volume() {
 }
 
 mem() {
-  printf "^c$magenta^ MEM "
+  printf "^c$green^ MEM "
   printf "^c$white^ $(free -h | awk '/^Mem/ { print $3 }' | sed s/i//g)"
 }
 
@@ -37,7 +37,7 @@ wlan() {
 
 clock() {
 	printf "^c$red^  "
-	printf "^c$white^ $(date '+%d/%m/%Y %H:%M:%S ') "
+	printf "^c$white^ $(date '+%d/%m/%Y %H:%M:%S') "
 }
 
 fcitx5_bar(){
@@ -50,7 +50,8 @@ fcitx5_bar(){
 battery(){
   bat1_val=$(cat /sys/class/power_supply/BAT0/capacity)
   bat2_val=$(cat /sys/class/power_supply/BAT1/capacity)
-  # add this because i have 2 batteries
+
+  # you can remove $bat2_val because my laptop having 2 batteries
   case "$(cat /sys/class/power_supply/AC/online 2>/dev/null)" in
 	0) printf "^c$green^   ^d^%s""^c$white^$bat1_val $bat2_val" ;;
 	1) printf "^c$yellow^    ^d^%s""^c$white^$bat1_val $bat2_val" ;;
@@ -59,5 +60,5 @@ battery(){
 
 while true; do
 
-  xsetroot -name "$(cpu) $(mem) $(wlan) $(fcitx5_bar) $(backlight) $(battery) $(volume) $(clock) " && sleep 1
+  xsetroot -name "$(mem) $(cpu) $(wlan) $(fcitx5_bar) $(backlight) $(battery) $(volume) $(clock)" && sleep 1
 done
